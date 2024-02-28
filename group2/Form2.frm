@@ -1,6 +1,6 @@
 VERSION 5.00
 Begin VB.Form Home 
-   BackColor       =   &H00FFFFFF&
+   BackColor       =   &H00404000&
    Caption         =   "Home"
    ClientHeight    =   7575
    ClientLeft      =   120
@@ -46,7 +46,7 @@ Begin VB.Form Home
       Width           =   2655
    End
    Begin VB.Label Label1 
-      BackColor       =   &H00FFFFFF&
+      BackColor       =   &H00404000&
       Caption         =   "Welcome to Pharmart, click to continue..."
       BeginProperty Font 
          Name            =   "MS Sans Serif"
@@ -57,6 +57,7 @@ Begin VB.Form Home
          Italic          =   0   'False
          Strikethrough   =   0   'False
       EndProperty
+      ForeColor       =   &H00FFFFFF&
       Height          =   375
       Left            =   3360
       TabIndex        =   2

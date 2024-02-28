@@ -1,7 +1,7 @@
 VERSION 5.00
 Object = "{5E9E78A0-531B-11CF-91F6-C2863C385E30}#1.0#0"; "msflxgrd.ocx"
 Begin VB.Form customerGrid 
-   BackColor       =   &H00800080&
+   BackColor       =   &H00400000&
    Caption         =   "Form1"
    ClientHeight    =   7920
    ClientLeft      =   120
@@ -11,8 +11,20 @@ Begin VB.Form customerGrid
    ScaleHeight     =   7920
    ScaleWidth      =   15270
    StartUpPosition =   3  'Windows Default
+   Begin MSFlexGridLib.MSFlexGrid FlexGrid1 
+      Height          =   2775
+      Left            =   1440
+      TabIndex        =   1
+      Top             =   720
+      Width           =   12615
+      _ExtentX        =   22251
+      _ExtentY        =   4895
+      _Version        =   393216
+      Rows            =   5
+      Cols            =   7
+   End
    Begin VB.CommandButton Command3 
-      BackColor       =   &H000080FF&
+      BackColor       =   &H00808080&
       Caption         =   "Add Customer"
       BeginProperty Font 
          Name            =   "MS Sans Serif"
@@ -26,21 +38,9 @@ Begin VB.Form customerGrid
       Height          =   975
       Left            =   3600
       Style           =   1  'Graphical
-      TabIndex        =   1
+      TabIndex        =   0
       Top             =   5520
       Width           =   3855
-   End
-   Begin MSFlexGridLib.MSFlexGrid FlexGrid1 
-      Height          =   4335
-      Left            =   600
-      TabIndex        =   0
-      Top             =   240
-      Width           =   13695
-      _ExtentX        =   24156
-      _ExtentY        =   7646
-      _Version        =   393216
-      Rows            =   8
-      Cols            =   7
    End
 End
 Attribute VB_Name = "customerGrid"
@@ -70,7 +70,7 @@ Private Sub Form_Load()
         .TextMatrix(0, 7) = "Connection Date"
         
      ' Default data
-    .TextMatrix(1, 0) = "Customer A"
+    .TextMatrix(1, 0) = ""
     .TextMatrix(1, 1) = "001"
     .TextMatrix(1, 2) = "John"
     .TextMatrix(1, 3) = "Doe"
@@ -79,7 +79,7 @@ Private Sub Form_Load()
     .TextMatrix(1, 6) = "M12345"
     .TextMatrix(1, 7) = "2022-01-01"
     
-    .TextMatrix(2, 0) = "Customer B"
+    .TextMatrix(2, 0) = ""
     .TextMatrix(2, 1) = "002"
     .TextMatrix(2, 2) = "Jane"
     .TextMatrix(2, 3) = "Smith"
@@ -88,7 +88,7 @@ Private Sub Form_Load()
     .TextMatrix(2, 6) = "M54321"
     .TextMatrix(2, 7) = "2022-01-15"
     
-    .TextMatrix(3, 0) = "Customer C"
+    .TextMatrix(3, 0) = ""
     .TextMatrix(3, 1) = "003"
     .TextMatrix(3, 2) = "Alice"
     .TextMatrix(3, 3) = "Johnson"
@@ -97,7 +97,7 @@ Private Sub Form_Load()
     .TextMatrix(3, 6) = "M98765"
     .TextMatrix(3, 7) = "2022-02-01"
     
-    .TextMatrix(4, 0) = "Customer D"
+    .TextMatrix(4, 0) = ""
     .TextMatrix(4, 1) = "004"
     .TextMatrix(4, 2) = "Bob"
     .TextMatrix(4, 3) = "Williams"
@@ -106,7 +106,7 @@ Private Sub Form_Load()
     .TextMatrix(4, 6) = "M67890"
     .TextMatrix(4, 7) = "2022-02-15"
     
-    .TextMatrix(5, 0) = "Customer E"
+    .TextMatrix(5, 0) = ""
     .TextMatrix(5, 1) = "005"
     .TextMatrix(5, 2) = "Eva"
     .TextMatrix(5, 3) = "Brown"
@@ -152,3 +152,4 @@ Public Sub AddDataToFlexGrid(Text1 As String, Text2 As String, Text3 As String, 
     customerGrid.FlexGrid1.TextMatrix(newRow - 1, 6) = Text6
     customerGrid.FlexGrid1.TextMatrix(newRow - 1, 7) = Text7
 End Sub
+

@@ -10,6 +10,15 @@ Begin VB.Form Register
    ScaleWidth      =   15420
    StartUpPosition =   3  'Windows Default
    Begin VB.TextBox Text10 
+      BeginProperty Font 
+         Name            =   "MS Sans Serif"
+         Size            =   12
+         Charset         =   0
+         Weight          =   400
+         Underline       =   0   'False
+         Italic          =   0   'False
+         Strikethrough   =   0   'False
+      EndProperty
       Height          =   975
       Left            =   5880
       TabIndex        =   19
@@ -45,12 +54,21 @@ Begin VB.Form Register
          Strikethrough   =   0   'False
       EndProperty
       Height          =   375
-      Left            =   8520
+      Left            =   7800
       TabIndex        =   8
-      Top             =   6120
+      Top             =   7080
       Width           =   1695
    End
    Begin VB.TextBox Text1 
+      BeginProperty Font 
+         Name            =   "MS Sans Serif"
+         Size            =   12
+         Charset         =   0
+         Weight          =   400
+         Underline       =   0   'False
+         Italic          =   0   'False
+         Strikethrough   =   0   'False
+      EndProperty
       Height          =   495
       Left            =   5760
       TabIndex        =   7
@@ -58,6 +76,15 @@ Begin VB.Form Register
       Width           =   4695
    End
    Begin VB.TextBox Text2 
+      BeginProperty Font 
+         Name            =   "MS Sans Serif"
+         Size            =   12
+         Charset         =   0
+         Weight          =   400
+         Underline       =   0   'False
+         Italic          =   0   'False
+         Strikethrough   =   0   'False
+      EndProperty
       Height          =   495
       Left            =   5760
       TabIndex        =   6
@@ -65,6 +92,15 @@ Begin VB.Form Register
       Width           =   4695
    End
    Begin VB.TextBox Text3 
+      BeginProperty Font 
+         Name            =   "MS Sans Serif"
+         Size            =   12
+         Charset         =   0
+         Weight          =   400
+         Underline       =   0   'False
+         Italic          =   0   'False
+         Strikethrough   =   0   'False
+      EndProperty
       Height          =   495
       Left            =   5760
       TabIndex        =   5
@@ -72,6 +108,15 @@ Begin VB.Form Register
       Width           =   4695
    End
    Begin VB.TextBox Text6 
+      BeginProperty Font 
+         Name            =   "MS Sans Serif"
+         Size            =   12
+         Charset         =   0
+         Weight          =   400
+         Underline       =   0   'False
+         Italic          =   0   'False
+         Strikethrough   =   0   'False
+      EndProperty
       Height          =   495
       Left            =   5880
       TabIndex        =   4
@@ -79,6 +124,15 @@ Begin VB.Form Register
       Width           =   4695
    End
    Begin VB.TextBox Text7 
+      BeginProperty Font 
+         Name            =   "MS Sans Serif"
+         Size            =   12
+         Charset         =   0
+         Weight          =   400
+         Underline       =   0   'False
+         Italic          =   0   'False
+         Strikethrough   =   0   'False
+      EndProperty
       Height          =   495
       Left            =   5880
       TabIndex        =   3
@@ -86,6 +140,15 @@ Begin VB.Form Register
       Width           =   4695
    End
    Begin VB.TextBox Text8 
+      BeginProperty Font 
+         Name            =   "MS Sans Serif"
+         Size            =   12
+         Charset         =   0
+         Weight          =   400
+         Underline       =   0   'False
+         Italic          =   0   'False
+         Strikethrough   =   0   'False
+      EndProperty
       Height          =   495
       Left            =   5880
       TabIndex        =   2
@@ -93,6 +156,15 @@ Begin VB.Form Register
       Width           =   4695
    End
    Begin VB.TextBox Text9 
+      BeginProperty Font 
+         Name            =   "MS Sans Serif"
+         Size            =   12
+         Charset         =   0
+         Weight          =   400
+         Underline       =   0   'False
+         Italic          =   0   'False
+         Strikethrough   =   0   'False
+      EndProperty
       Height          =   495
       Left            =   5880
       TabIndex        =   1
@@ -295,21 +367,7 @@ Attribute VB_Creatable = False
 Attribute VB_PredeclaredId = True
 Attribute VB_Exposed = False
 Private Sub Command1_Click()
-'Dim serial As String
-'Dim ID As Double
 
-'serial = Text1.Text
-'ID = Val(Text2.Text)
-
-'If Text1.Text = "" Or Text2.Text = "" Then
- '   MsgBox "Empty field not allowed", vbExclamation
-'Else
- '   MsgBox ("Login Successful " & vbNewLine & _
-  '  "You can now vote")
-   ' Login.Show
-    'Register.Hide
-    
-   ' End If
    
     Dim serialNumber As String
     Dim id As String
@@ -317,14 +375,18 @@ Private Sub Command1_Click()
     serialNumber = GenerateRandomSerialNumber()
     id = GenerateRandomID()
     
-    MsgBox ("write down serial and id number")
+    If Text1.Text = "" Or Text2.Text = "" Or Text3.Text = "" Or Text6.Text = "" Or Text7.Text = "" Or Text8.Text = "" Or Text9.Text = "" Or Text10.Text = "" Then
+    
+        MsgBox "Most fill all input field"
+    Else
+        MsgBox ("write down serial and id number")
    
-    MsgBox "Serial Number: " & serialNumber & vbCrLf & _
+        MsgBox "Serial Number: " & serialNumber & vbCrLf & _
            " ID: " & id, vbInformation
    
-   Login.Show
-   Register.Hide
-   
+        Login.Show
+        Register.Hide
+   End If
 End Sub
 
 Private Function GenerateRandomSerialNumber() As String
@@ -334,7 +396,7 @@ Private Function GenerateRandomSerialNumber() As String
     Randomize ' Initialize random number generator
     
     ' Generate 16-character serial number
-    For i = 1 To 16
+    For i = 1 To 6
         ' Append a random uppercase letter or digit to the serial number
         serialNumber = serialNumber & Chr(Asc("A") + Int(Rnd * 26)) ' Uppercase letter (A-Z)
         ' Alternatively, you can use: serialNumber = serialNumber & Chr(48 + Int(Rnd * 10)) ' Digit (0-9)
@@ -350,9 +412,9 @@ Private Function GenerateRandomID() As String
     Randomize ' Initialize random number generator
     
     ' Generate 10-character ID
-    For i = 1 To 10
+    For i = 1 To 4
         ' Append a random uppercase letter or digit to the ID
-        id = id & Chr(Asc("A") + Int(Rnd * 26)) ' Uppercase letter (A-Z)
+        id = id & Int(Rnd * 10) ' Uppercase letter (A-Z)
         ' Alternatively, you can use: id = id & Chr(48 + Int(Rnd * 10)) ' Digit (0-9)
     Next i
     

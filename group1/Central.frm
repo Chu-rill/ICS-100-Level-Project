@@ -1,6 +1,6 @@
 VERSION 5.00
 Begin VB.Form Central 
-   BackColor       =   &H00800080&
+   BackColor       =   &H00400000&
    Caption         =   "Central"
    ClientHeight    =   4830
    ClientLeft      =   120
@@ -11,7 +11,7 @@ Begin VB.Form Central
    ScaleWidth      =   12000
    StartUpPosition =   3  'Windows Default
    Begin VB.CommandButton Command2 
-      BackColor       =   &H000080FF&
+      BackColor       =   &H00808080&
       Caption         =   "Bill Status"
       BeginProperty Font 
          Name            =   "MS Sans Serif"
@@ -23,14 +23,14 @@ Begin VB.Form Central
          Strikethrough   =   0   'False
       EndProperty
       Height          =   1215
-      Left            =   6600
+      Left            =   6360
       Style           =   1  'Graphical
       TabIndex        =   1
-      Top             =   720
+      Top             =   1200
       Width           =   4215
    End
    Begin VB.CommandButton Command1 
-      BackColor       =   &H000080FF&
+      BackColor       =   &H00808080&
       Caption         =   "Customer List"
       BeginProperty Font 
          Name            =   "MS Sans Serif"
@@ -42,10 +42,10 @@ Begin VB.Form Central
          Strikethrough   =   0   'False
       EndProperty
       Height          =   1215
-      Left            =   840
+      Left            =   1440
       Style           =   1  'Graphical
       TabIndex        =   0
-      Top             =   720
+      Top             =   1200
       Width           =   3975
    End
 End

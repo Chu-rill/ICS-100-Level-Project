@@ -1,6 +1,6 @@
 VERSION 5.00
 Begin VB.Form Login 
-   BackColor       =   &H00FFFFFF&
+   BackColor       =   &H00404000&
    Caption         =   "Login"
    ClientHeight    =   6885
    ClientLeft      =   120
@@ -31,7 +31,7 @@ Begin VB.Form Login
    End
    Begin VB.CheckBox Check1 
       Appearance      =   0  'Flat
-      BackColor       =   &H80000005&
+      BackColor       =   &H00404000&
       Caption         =   "   Show password"
       BeginProperty Font 
          Name            =   "Segoe UI Symbol"
@@ -42,7 +42,7 @@ Begin VB.Form Login
          Italic          =   0   'False
          Strikethrough   =   0   'False
       EndProperty
-      ForeColor       =   &H80000008&
+      ForeColor       =   &H00FFFFFF&
       Height          =   315
       Left            =   4680
       TabIndex        =   6
@@ -84,7 +84,7 @@ Begin VB.Form Login
       Width           =   3495
    End
    Begin VB.Label Label3 
-      BackColor       =   &H00FFFFFF&
+      BackColor       =   &H00404000&
       Caption         =   "Password:"
       BeginProperty Font 
          Name            =   "MS Serif"
@@ -95,7 +95,7 @@ Begin VB.Form Login
          Italic          =   0   'False
          Strikethrough   =   0   'False
       EndProperty
-      ForeColor       =   &H00C00000&
+      ForeColor       =   &H00FFFFFF&
       Height          =   375
       Left            =   2880
       TabIndex        =   2
@@ -103,7 +103,7 @@ Begin VB.Form Login
       Width           =   1815
    End
    Begin VB.Label Label2 
-      BackColor       =   &H00FFFFFF&
+      BackColor       =   &H00404000&
       Caption         =   "Username:"
       BeginProperty Font 
          Name            =   "MS Serif"
@@ -114,7 +114,7 @@ Begin VB.Form Login
          Italic          =   0   'False
          Strikethrough   =   0   'False
       EndProperty
-      ForeColor       =   &H00C00000&
+      ForeColor       =   &H00FFFFFF&
       Height          =   480
       Left            =   2880
       TabIndex        =   1
@@ -122,7 +122,7 @@ Begin VB.Form Login
       Width           =   1815
    End
    Begin VB.Label Label1 
-      BackColor       =   &H00FFFFFF&
+      BackColor       =   &H00404000&
       Caption         =   "  Login"
       BeginProperty Font 
          Name            =   "Segoe UI Symbol"
@@ -133,6 +133,7 @@ Begin VB.Form Login
          Italic          =   0   'False
          Strikethrough   =   0   'False
       EndProperty
+      ForeColor       =   &H00FFFFFF&
       Height          =   735
       Left            =   4800
       TabIndex        =   0
@@ -159,15 +160,10 @@ Private Sub Command1_Click()
 
 If Text1.Text = "" Or Text2.Text = "" Then
     MsgBox "Empty value not allowed.", vbExclamation
-ElseIf Len(Text1.Text) < 10 Then
-    MsgBox "Username is too short. It must be more than 10 characters.", vbExclamation
-ElseIf Len(Text2.Text) < 8 Then
-    MsgBox "Password must be more than 8 characters.", vbExclamation
-Else
+ElseIf Text1.Text = "Group 2" And Text2.Text = "admin" Then
     MsgBox ("Login Successful")
     Home.Show
     Login.Hide
-       
 End If
 
 

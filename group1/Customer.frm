@@ -1,6 +1,6 @@
 VERSION 5.00
 Begin VB.Form Customer 
-   BackColor       =   &H00800080&
+   BackColor       =   &H00400000&
    Caption         =   "Customer"
    ClientHeight    =   8190
    ClientLeft      =   120
@@ -123,7 +123,7 @@ Begin VB.Form Customer
       Width           =   4335
    End
    Begin VB.CommandButton Command1 
-      BackColor       =   &H000080FF&
+      BackColor       =   &H00808080&
       Caption         =   "Add Customer"
       BeginProperty Font 
          Name            =   "MS Sans Serif"
@@ -142,7 +142,7 @@ Begin VB.Form Customer
       Width           =   2535
    End
    Begin VB.CommandButton Command2 
-      BackColor       =   &H000080FF&
+      BackColor       =   &H00808080&
       Caption         =   "Clear"
       BeginProperty Font 
          Name            =   "MS Sans Serif"
@@ -161,7 +161,7 @@ Begin VB.Form Customer
       Width           =   2535
    End
    Begin VB.CommandButton Command3 
-      BackColor       =   &H000080FF&
+      BackColor       =   &H00808080&
       Caption         =   "Cancel"
       BeginProperty Font 
          Name            =   "MS Sans Serif"
@@ -180,7 +180,7 @@ Begin VB.Form Customer
       Width           =   2535
    End
    Begin VB.Label Label8 
-      BackColor       =   &H00800080&
+      BackColor       =   &H00400000&
       Caption         =   "Add Customer"
       BeginProperty Font 
          Name            =   "MV Boli"
@@ -191,6 +191,7 @@ Begin VB.Form Customer
          Italic          =   0   'False
          Strikethrough   =   0   'False
       EndProperty
+      ForeColor       =   &H00FFFFFF&
       Height          =   855
       Left            =   4800
       TabIndex        =   17
@@ -198,7 +199,7 @@ Begin VB.Form Customer
       Width           =   4695
    End
    Begin VB.Label Label1 
-      BackColor       =   &H00800080&
+      BackColor       =   &H00400000&
       Caption         =   "ID :"
       BeginProperty Font 
          Name            =   "MS Sans Serif"
@@ -218,7 +219,7 @@ Begin VB.Form Customer
       Width           =   615
    End
    Begin VB.Label Label2 
-      BackColor       =   &H00800080&
+      BackColor       =   &H00400000&
       Caption         =   "First Name :"
       BeginProperty Font 
          Name            =   "MS Sans Serif"
@@ -237,7 +238,7 @@ Begin VB.Form Customer
       Width           =   1815
    End
    Begin VB.Label Label3 
-      BackColor       =   &H00800080&
+      BackColor       =   &H00400000&
       Caption         =   "Last Name :"
       BeginProperty Font 
          Name            =   "MS Sans Serif"
@@ -256,7 +257,7 @@ Begin VB.Form Customer
       Width           =   1815
    End
    Begin VB.Label Label4 
-      BackColor       =   &H00800080&
+      BackColor       =   &H00400000&
       Caption         =   "Address :"
       BeginProperty Font 
          Name            =   "MS Sans Serif"
@@ -275,7 +276,7 @@ Begin VB.Form Customer
       Width           =   1455
    End
    Begin VB.Label Label5 
-      BackColor       =   &H00800080&
+      BackColor       =   &H00400000&
       Caption         =   "Phone :"
       BeginProperty Font 
          Name            =   "MS Sans Serif"
@@ -294,7 +295,7 @@ Begin VB.Form Customer
       Width           =   1215
    End
    Begin VB.Label Label6 
-      BackColor       =   &H00800080&
+      BackColor       =   &H00400000&
       Caption         =   "Meter No :"
       BeginProperty Font 
          Name            =   "MS Sans Serif"
@@ -313,7 +314,7 @@ Begin VB.Form Customer
       Width           =   1695
    End
    Begin VB.Label Label7 
-      BackColor       =   &H00800080&
+      BackColor       =   &H00400000&
       Caption         =   "Connection Date :"
       BeginProperty Font 
          Name            =   "MS Sans Serif"
@@ -340,11 +341,13 @@ Attribute VB_PredeclaredId = True
 Attribute VB_Exposed = False
 
 Private Sub Command1_Click()
- MsgBox ("Item Added")
+If Text1.Text = "" Or Text2.Text = "" Or Text3.Text = "" Or Text4.Text = "" Or Text5.Text = "" Or Text6.Text = "" Or Text7.Text = "" Then
+ MsgBox "Input field can not be empty", vbExclamation
+ Else
+     MsgBox ("Item Added")
       customerGrid.AddDataToFlexGrid Text1.Text, Text2.Text, Text3.Text, Text4.Text, Text5.Text, Text6.Text, Text7.Text
-  
      Customer.Hide
-    
+
         Text1.Text = ""
         Text2.Text = ""
          Text3.Text = ""
@@ -352,7 +355,7 @@ Private Sub Command1_Click()
         Text5.Text = ""
         Text6.Text = ""
         Text7.Text = ""
-        
+End If
         
 End Sub
 

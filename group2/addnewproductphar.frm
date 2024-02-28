@@ -1,6 +1,6 @@
 VERSION 5.00
 Begin VB.Form addnewproductphar 
-   BackColor       =   &H80000004&
+   BackColor       =   &H00404000&
    Caption         =   "Add New Product"
    ClientHeight    =   7725
    ClientLeft      =   120
@@ -112,7 +112,7 @@ Begin VB.Form addnewproductphar
    End
    Begin VB.Label Label5 
       AutoSize        =   -1  'True
-      BackColor       =   &H80000004&
+      BackColor       =   &H00404000&
       Caption         =   "Add New Product"
       BeginProperty Font 
          Name            =   "MS Sans Serif"
@@ -123,6 +123,7 @@ Begin VB.Form addnewproductphar
          Italic          =   0   'False
          Strikethrough   =   0   'False
       EndProperty
+      ForeColor       =   &H00FFFFFF&
       Height          =   375
       Left            =   3960
       TabIndex        =   12
@@ -130,7 +131,7 @@ Begin VB.Form addnewproductphar
       Width           =   2520
    End
    Begin VB.Label Label6 
-      BackColor       =   &H80000004&
+      BackColor       =   &H00404000&
       Caption         =   "Product ID:"
       BeginProperty Font 
          Name            =   "MS Sans Serif"
@@ -141,6 +142,7 @@ Begin VB.Form addnewproductphar
          Italic          =   0   'False
          Strikethrough   =   0   'False
       EndProperty
+      ForeColor       =   &H00FFFFFF&
       Height          =   375
       Left            =   2040
       TabIndex        =   10
@@ -148,7 +150,7 @@ Begin VB.Form addnewproductphar
       Width           =   1575
    End
    Begin VB.Label Label1 
-      BackColor       =   &H80000004&
+      BackColor       =   &H00404000&
       Caption         =   "Product Name:"
       BeginProperty Font 
          Name            =   "MS Sans Serif"
@@ -159,6 +161,7 @@ Begin VB.Form addnewproductphar
          Italic          =   0   'False
          Strikethrough   =   0   'False
       EndProperty
+      ForeColor       =   &H00FFFFFF&
       Height          =   405
       Left            =   1560
       TabIndex        =   6
@@ -166,7 +169,7 @@ Begin VB.Form addnewproductphar
       Width           =   2055
    End
    Begin VB.Label Label4 
-      BackColor       =   &H80000004&
+      BackColor       =   &H00404000&
       Caption         =   "Price:"
       BeginProperty Font 
          Name            =   "MS Serif"
@@ -177,6 +180,7 @@ Begin VB.Form addnewproductphar
          Italic          =   0   'False
          Strikethrough   =   0   'False
       EndProperty
+      ForeColor       =   &H00FFFFFF&
       Height          =   375
       Left            =   2640
       TabIndex        =   2
@@ -184,7 +188,7 @@ Begin VB.Form addnewproductphar
       Width           =   855
    End
    Begin VB.Label Label3 
-      BackColor       =   &H80000004&
+      BackColor       =   &H00404000&
       Caption         =   "Quantity:"
       BeginProperty Font 
          Name            =   "MS Sans Serif"
@@ -195,6 +199,7 @@ Begin VB.Form addnewproductphar
          Italic          =   0   'False
          Strikethrough   =   0   'False
       EndProperty
+      ForeColor       =   &H00FFFFFF&
       Height          =   405
       Left            =   2280
       TabIndex        =   1
@@ -202,7 +207,7 @@ Begin VB.Form addnewproductphar
       Width           =   1215
    End
    Begin VB.Label Label2 
-      BackColor       =   &H80000004&
+      BackColor       =   &H00404000&
       Caption         =   "Description:"
       BeginProperty Font 
          Name            =   "MS Sans Serif"
@@ -213,6 +218,7 @@ Begin VB.Form addnewproductphar
          Italic          =   0   'False
          Strikethrough   =   0   'False
       EndProperty
+      ForeColor       =   &H00FFFFFF&
       Height          =   375
       Left            =   1920
       TabIndex        =   0
@@ -225,7 +231,8 @@ Attribute VB_GlobalNameSpace = False
 Attribute VB_Creatable = False
 Attribute VB_PredeclaredId = True
 Attribute VB_Exposed = False
-
+Public db As Database
+Public rs As Recordset
 Private Sub Command1_Click()
 addnewproductphar.Hide
 
@@ -235,8 +242,24 @@ Private Sub Command2_Click()
     If Text1.Text = "" Or Text5.Text = "" Or Text2.Text = "" Or Text3.Text = "" Or Text4.Text = "" Then
         MsgBox "Input field can not be empty", vbExclamation
     Else
-      MsgBox ("Item Added")
-      pharmacy.AddDataToFlexGrid Text1.Text, Text5.Text, Text2.Text, Val(Text3.Text), Val(Text4.Text)
+      'MsgBox ("Item Added")
+      MsgBox ("Item Added " & vbNewLine & _
+    "Product Name: " & Text1.Text & vbNewLine & _
+    "Product ID: " & Text5.Text & vbNewLine & _
+    "Description: " & Text2.Text & vbNewLine & _
+    "Quantity: " & Text3.Text & vbNewLine & _
+    "Price: " & Text4.Text) 'vbNewLine & _
+   ' "Receipt No: " & ID)
+    '  pharmacy.AddDataToFlexGrid Text1.Text, Text5.Text, Text2.Text, Val(Text3.Text), Val(Text4.Text)
+      rs.AddNew
+      rs.Fields(0).Value = Text1.Text
+      rs.Fields(1).Value = Text5.Text
+      rs.Fields(2).Value = Text2.Text
+      rs.Fields(3).Value = Text3.Text
+      rs.Fields(4).Value = Text4.Text
+    
+      rs.Update
+     ' MsgBox ("succesful")
   
       addnewproductphar.Hide
     
@@ -252,24 +275,30 @@ End Sub
 
 
 Private Function GenerateRandomID() As String
-    Dim id As String
+    Dim ID As String
     Dim i As Integer
     
     Randomize ' Initialize random number generator
     
     ' Generate 10-character ID
-    For i = 1 To 10
+    For i = 1 To 3
         ' Append a random uppercase letter or digit to the ID
-        id = id & Chr(Asc("A") + Int(Rnd * 26)) ' Uppercase letter (A-Z)
+       
+        ID = ID & Int(Rnd * 10)
+ ' Uppercase letter (A-Z)
+
         ' Alternatively, you can use: id = id & Chr(48 + Int(Rnd * 10)) ' Digit (0-9)
     Next i
     
-    GenerateRandomID = id
+    GenerateRandomID = ID
 End Function
 Private Sub Form_Load()
-Dim id As String
+Set db = OpenDatabase("C:\Users\Churchill\Desktop\group2\table.mdb")
+Set rs = db.OpenRecordset("Select * from pharmcy")
 
-id = GenerateRandomID()
+Dim ID As String
 
-Text5.Text = id
+ID = GenerateRandomID()
+
+Text5.Text = ID
 End Sub

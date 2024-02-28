@@ -10,6 +10,25 @@ Begin VB.Form center
    ScaleHeight     =   7920
    ScaleWidth      =   15210
    StartUpPosition =   3  'Windows Default
+   Begin VB.CommandButton Command2 
+      BackColor       =   &H0000FF00&
+      Caption         =   "Calculate Votes"
+      BeginProperty Font 
+         Name            =   "MS Sans Serif"
+         Size            =   13.5
+         Charset         =   0
+         Weight          =   700
+         Underline       =   0   'False
+         Italic          =   0   'False
+         Strikethrough   =   0   'False
+      EndProperty
+      Height          =   1215
+      Left            =   360
+      Style           =   1  'Graphical
+      TabIndex        =   2
+      Top             =   2640
+      Width           =   2655
+   End
    Begin MSFlexGridLib.MSFlexGrid FlexGrid1 
       Height          =   4095
       Left            =   5160
@@ -45,8 +64,35 @@ Attribute VB_GlobalNameSpace = False
 Attribute VB_Creatable = False
 Attribute VB_PredeclaredId = True
 Attribute VB_Exposed = False
+'Dim FlexGrid1 As New MSFlexGrid
+
 Private Sub Command1_Click()
 castVote.Show
+
+End Sub
+
+Private Sub Command2_Click()
+     Dim nameCounts As Scripting.Dictionary
+    Dim winner As String
+
+    ' Calculate occurrences of each name
+    Set nameCounts = CountOccurrencesInFlexGrid(FlexGrid1)
+
+    ' Find the winner
+    winner = GetMaxOccurrences(nameCounts)
+
+    ' Construct message for displaying total votes
+    Dim msg As String
+    Dim name As Variant
+    For Each name In nameCounts.Keys
+        msg = msg & name & ": " & nameCounts(name) & vbCrLf
+    Next name
+
+    ' Display the total votes for each candidate
+    MsgBox "Total votes for each candidate:" & vbCrLf & msg, vbInformation, "Candidate Totals"
+
+    ' Display the winner
+    MsgBox "The winner is: " & winner, vbInformation, "Winner"
 
 End Sub
 
@@ -66,31 +112,31 @@ Private Sub Form_Load()
         
         ' Default data
          .TextMatrix(1, 0) = ""
-        .TextMatrix(1, 1) = "sdfdfdsfsdf"
-        .TextMatrix(1, 2) = "4234343434"
+        .TextMatrix(1, 1) = "HEWYVB"
+        .TextMatrix(1, 2) = "4234"
         .TextMatrix(1, 3) = "Peter Obi"
 
         
         .TextMatrix(2, 0) = ""
-        .TextMatrix(2, 1) = "002wefwef"
-        .TextMatrix(2, 2) = "234354545235"
+        .TextMatrix(2, 1) = "ALOKMW"
+        .TextMatrix(2, 2) = "2343"
         .TextMatrix(2, 3) = "Bola Ahmed Tinubu"
 
         
         .TextMatrix(3, 0) = ""
-        .TextMatrix(3, 1) = "003343432423"
-        .TextMatrix(3, 2) = "4324324234"
+        .TextMatrix(3, 1) = "POUMVZ"
+        .TextMatrix(3, 2) = "4324"
         .TextMatrix(3, 3) = "Ibrahim Quazim Adebayo "
 
         
         .TextMatrix(4, 0) = ""
-        .TextMatrix(4, 1) = "453534"
-        .TextMatrix(4, 2) = "dsgdsfdfdsf"
+        .TextMatrix(4, 1) = "PLSMAI"
+        .TextMatrix(4, 2) = "0195"
         .TextMatrix(4, 3) = "Atiku Abubarkar"
         
         .TextMatrix(5, 0) = ""
-        .TextMatrix(5, 1) = "00543423"
-        .TextMatrix(5, 2) = "werewrewrwer"
+        .TextMatrix(5, 1) = "MWLJDM"
+        .TextMatrix(5, 2) = "3985"
         .TextMatrix(5, 3) = "Ibrahim Quazim Adebayo"
         
           .ColAlignment(0) = flexAlignCenterCenter
@@ -118,4 +164,50 @@ Public Sub AddDataToFlexGrid(Text1 As String, Text2 As String, optionCaption As 
     center.FlexGrid1.TextMatrix(newRow - 1, 2) = Text2
     center.FlexGrid1.TextMatrix(newRow - 1, 3) = optionCaption
 End Sub
+Private Function CountOccurrencesInFlexGrid(ByVal flexGrid As MSFlexGrid) As Scripting.Dictionary
+    Dim rowCount As Integer
+    Dim colCount As Integer
+    Dim i As Integer, j As Integer
+    Dim nameCounts As New Scripting.Dictionary
+    
+    rowCount = flexGrid.Rows - 1 ' Exclude the fixed row
+    colCount = flexGrid.Cols
+    
+    ' Count occurrences of each name
+    For i = 1 To rowCount
+        Dim name As String
+        name = flexGrid.TextMatrix(i, 3) ' Assuming the names are in the first column
+        
+        If nameCounts.Exists(name) Then
+            nameCounts(name) = nameCounts(name) + 1
+        Else
+            nameCounts.Add name, 1
+        End If
+    Next i
+    
+    Set CountOccurrencesInFlexGrid = nameCounts
+End Function
+Private Function GetMaxOccurrences(ByVal counts As Scripting.Dictionary) As String
+    Dim maxCount As Integer
+    Dim maxName As String
+    Dim name As Variant
+    
+    maxCount = 0
+    
+    ' Find the name(s) with the maximum occurrence count
+    For Each name In counts.Keys
+        If counts(name) > maxCount Then
+            maxCount = counts(name)
+            maxName = name
+        ElseIf counts(name) = maxCount Then
+            ' In case of a tie, select the candidate whose name comes first alphabetically
+            If StrComp(name, maxName, vbTextCompare) < 0 Then
+                maxName = name
+            End If
+        End If
+    Next name
+    
+    GetMaxOccurrences = maxName
+End Function
+
 

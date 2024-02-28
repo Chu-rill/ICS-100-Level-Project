@@ -18,6 +18,7 @@ Begin VB.Form castVote
       Width           =   3615
    End
    Begin VB.OptionButton Option4 
+      BackColor       =   &H80000010&
       Caption         =   "Ibrahim Quazim Adebayo "
       BeginProperty Font 
          Name            =   "MS Sans Serif"
@@ -35,6 +36,7 @@ Begin VB.Form castVote
       Width           =   3975
    End
    Begin VB.OptionButton Option3 
+      BackColor       =   &H80000010&
       Caption         =   "Atiku Abubarkar"
       BeginProperty Font 
          Name            =   "MS Sans Serif"
@@ -52,6 +54,7 @@ Begin VB.Form castVote
       Width           =   3495
    End
    Begin VB.OptionButton Option2 
+      BackColor       =   &H80000010&
       Caption         =   "Bola Ahmed Tinubu"
       BeginProperty Font 
          Name            =   "MS Sans Serif"
@@ -95,6 +98,7 @@ Begin VB.Form castVote
       Width           =   1815
    End
    Begin VB.OptionButton Option1 
+      BackColor       =   &H80000010&
       Caption         =   "Peter Obi"
       BeginProperty Font 
          Name            =   "MS Sans Serif"
@@ -112,6 +116,7 @@ Begin VB.Form castVote
       Width           =   3495
    End
    Begin VB.Label Label3 
+      BackColor       =   &H80000010&
       Caption         =   "Serial No:"
       BeginProperty Font 
          Name            =   "MS Sans Serif"
@@ -129,6 +134,7 @@ Begin VB.Form castVote
       Width           =   1455
    End
    Begin VB.Label Label2 
+      BackColor       =   &H80000010&
       Caption         =   "ID:"
       BeginProperty Font 
          Name            =   "MS Sans Serif"
@@ -146,6 +152,7 @@ Begin VB.Form castVote
       Width           =   615
    End
    Begin VB.Label Label1 
+      BackColor       =   &H80000010&
       Caption         =   "Cast Vote"
       BeginProperty Font 
          Name            =   "Imprint MT Shadow"
